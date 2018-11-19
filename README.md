@@ -86,3 +86,6 @@ server.listen(8085, '127.0.0.1')
 
 
  ```
+
+
+[Mongoose 使用](http://www.cnblogs.com/zhongweiv/p/mongoose.html)
