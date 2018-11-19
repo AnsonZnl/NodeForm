@@ -1,6 +1,6 @@
 # NodeForm
-Node写的表单提交到MongoDB数据库中
- index.html
+Node写的表单提交到MongoDB数据库中    
+## index.html
  ```
  <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +22,7 @@ Node写的表单提交到MongoDB数据库中
 </head>
 <body>
     <form action="http://127.0.0.1:8085" method="get">
+    // 使用get方法 提交到本地
         <p>姓名：<input type="text" name=name></p>
         <p>年龄：<input type="text" name="age" id=""></p>
         <p>
@@ -34,11 +35,14 @@ Node写的表单提交到MongoDB数据库中
 </html>
  ```
  
- form.js
+ ## form.js
  ```
- let http= require('http');
+let http= require('http');
+//引入http模块
 let url= require('url');
+// 引入url 模块
 let mongoose= require('mongoose');
+// 使用npm 下载Mongoose 模块 然后引用
 
 mongoose.connect('mongodb://localhost/m_data');
 let db= mongoose.connection;
