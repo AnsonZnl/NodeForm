@@ -1,30 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>表单提交</title>
-    <style>
-        
-        form{
-            width: 200px;
-            padding: 50px;
-            margin-top: 20px;
-            margin: 0 auto;
-            border:1px #000 solid;
-        }
-    </style>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+   <title>表单提交</title>
+   <style>
+       form{
+           width: 200px;
+           padding: 50px;
+           margin-top: 20px;
+           margin: 0 auto;
+           border:1px #000 solid;
+       }
+   </style>
 </head>
 <body>
-    <form action="http://127.0.0.1:8085" method="get">
-        <p>姓名：<input type="text" name=name></p>
-        <p>年龄：<input type="text" name="age" id=""></p>
-        <p>
-            男 <input type="radio" name="sex" value="男">
-            女 <input type="radio" name="sex" value="女">
-        </p>
-        <input type="submit" value="提交" id="">
-    </form>
+   <form>
+   <!-- // 使用get方法 提交到本地 -->
+       <p>姓名：<input type="text" name="name"></p>
+       <p>年龄：<input type="text" name="age" id=""></p>
+       <p>
+           男 <input type="radio" name="sex" value="男">
+           女 <input type="radio" name="sex" value="女">
+       </p>
+       <p>
+           备注：<textarea type="text" name="remarks"></textarea>
+       </p>    
+       <input type="button" value="提交" id="submit">
+   </form>
+   </script>
+   <script>
+       var ip='http://39.106.203.127:3000';
+       $('#submit').on('click', function(){
+        var name = $('input[name="name"]').val(),
+            age = $('input[name="age"]').val(),
+            sex = $('input[name="sex"]').val(),
+            remarks = $('textarea[name="remarks"]').val();
+           $.ajax({
+                type: 'get',
+                url: ip+ '?name='+name+'&age='+age+'&sex='+sex+'&remarks='+remarks,
+                success: function(res){
+                    console.log(res)
+                    if(res === 'success'){
+                        alert('提交成功！')
+                    }else{
+                        alert('提交失败！')
+                    }
+                }
+           });
+       });
+   </script>
 </body>
 </html>
